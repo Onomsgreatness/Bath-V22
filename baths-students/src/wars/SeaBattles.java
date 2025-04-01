@@ -184,37 +184,8 @@ public class SeaBattles implements BATHS
      **/        
     public String commissionShip(String nme)
     {
-     //1. Check if ship exists in reserve fleet
-    if (!reserveFleet.containsKey(nme)) {
-        return "Not found";
-    } 
-    
-    // Get the ship instance from reserve fleet
-    Ship shipToCommission = reserveFleet.get(nme);
-    
-    //2. Check if ship is already in squadron
-    if (squadron.containsKey(nme)) {
-        return "Not available";
-    }
-    // 3. Check if already active
-    if (shipToCommission.isActive()) {
-        return "Not available - already active";
-    }
-    //4. Check if there's enough money to commission the ship
-    if (warChest < shipToCommission.getCommissionFee()) {
-        return "Not enough money";
-    }
-        // Deduct commission fee from war chest
-        warChest -= shipToCommission.getCommissionFee();
         
-        // Change ship status to active
-        shipToCommission.setStatus(Ship.ACTIVE);
-        
-        // Move ship from reserve to squadron
-        reserveFleet.remove(nme);
-        squadron.put(nme, shipToCommission);
-        
-        return "Ship commissioned"; 
+        return ".- Ship not found";
     }
         
     /** Returns true if the ship with the name is in the admiral's squadron, false otherwise.
@@ -238,23 +209,7 @@ public class SeaBattles implements BATHS
      **/
     public boolean decommissionShip(String nme)
     {
-        Ship shipToDecommission = reserveFleet.get(nme);
-        
-    // 1. Check if ship is in active squadron
-    if (shipToDecommission.isActive()) {
-        return "Not available - already active";
-    
-    // 2. Get the ship instance
-    Ship ship = squadron.get(shipName);
-    
-    // 3. Perform decommissioning
-    ship.setStatus(Ship.DEACTIVATED);    // Set to deactivated
-    squadron.remove(shipName);           // Remove from active
-    reserveFleet.put(shipName, ship);    // Add to reserves
-    warChest += (ship.getCommissionFee() / 2);  // Refund half fee
-    
-    return true;
-}
+        return false;
     }
     
   
