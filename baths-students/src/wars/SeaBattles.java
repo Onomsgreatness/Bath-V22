@@ -257,7 +257,7 @@ public class SeaBattles implements BATHS
     public String getEncounter(int num)
     {
         
-        return ".\nNo such encounter";
+        return "\nNo such encounter";
     }
     
     /** Provides a String representation of all encounters 
