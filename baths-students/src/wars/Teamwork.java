@@ -32,9 +32,9 @@ public class Teamwork
         details[9] = "22102944";
 
 
-        details[10] = "surname of member4";
-        details[11] = "first name of member4";
-        details[12] = "SRN of member4";
+        details[10] = "Hosseini";
+        details[11] = "Pasha";
+        details[12] = "22069104";
 
 	
 	   // only if applicable
