@@ -15,7 +15,12 @@ public class SeaBattles implements BATHS
     // may have one HashMap and select on stat
 
     private String admiral;
-    private double warChest;
+    private double warChest = 1000;
+    
+    private Map<String, Ship> reserveFleet = new HashMap<>();
+    private Map<String, Ship> squadron = new HashMap<>();
+    private Map<Integer, Encounter> encounters = new HashMap<>();
+
 
 
 //**************** BATHS ************************** 
@@ -40,7 +45,7 @@ public class SeaBattles implements BATHS
       
         
        setupShips();
-       // setupEncounters();
+       setupEncounters();
        // uncomment for testing Task 
        // readEncounters(filename);
     }
@@ -85,7 +90,12 @@ public class SeaBattles implements BATHS
     public String getReserveFleet()
     {   //assumes reserves is a Hashmap
        
-        return "No ships";
+     StringBuilder sb = new StringBuilder();
+    for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
+        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+    }
+    return sb.toString();
+    
     }
     
     /**Returns a String representation of the ships in the admiral's squadron
@@ -94,9 +104,11 @@ public class SeaBattles implements BATHS
      **/
     public String getSquadron()
     {
-   
-        
-        return "No ships";
+    StringBuilder sb = new StringBuilder();
+    for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
+        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+    }
+    return sb.toString();
     }
     
     /**Returns a String representation of the ships sunk (or "no ships sunk yet")
@@ -114,9 +126,18 @@ public class SeaBattles implements BATHS
      **/
     public String getAllShips()
     {
-  
-        
-        return "No ships";
+    StringBuilder sb = new StringBuilder();
+    sb.append("Reserve Fleet:\n");
+    for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
+        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+    }
+
+    sb.append("\nSquadron:\n");
+    for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
+        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+    }
+
+    return sb.toString();
     }
     
     
@@ -125,10 +146,13 @@ public class SeaBattles implements BATHS
      **/
     public String getShipDetails(String nme)
     {
- 
-        
-        
-        return "\nNo such ship";
+      if (reserveFleet.containsKey(nme)) {
+        return reserveFleet.get(nme).toString();
+    } else if (squadron.containsKey(nme)) {
+        return squadron.get(nme).toString();
+    } else {
+        return "Ship not found.";
+    }
     }     
  
     // ***************** Fleet Ships ************************   
@@ -235,12 +259,31 @@ public class SeaBattles implements BATHS
     //*******************************************************************************
      private void setupShips()
      {
-       
+        reserveFleet.put("Victory", new ManOWar("Victory", "Alan Aikin", 3, 500, 3, 30));
+        reserveFleet.put("Sophie", new Frigate("Sophie", "Ben Baggins", 8, 160, 16, true));
+        reserveFleet.put("Endeavour", new ManOWar("Endeavour", "Col Cannon", 4, 500, 2, 20));
+        reserveFleet.put("Arrow", new Sloop("Arrow", "Dan Dare", 5, 150, true));
+        reserveFleet.put("Belerophon", new ManOWar("Belerophon", "Ed Evans", 8, 900, 3, 50));
+        reserveFleet.put("Surprise", new Frigate("Surprise", "Fred Fox", 6, 300, 10, false));
+        reserveFleet.put("Jupiter", new Frigate("Jupiter", "Gil Gamage", 7, 30, 20, false));
+        reserveFleet.put("Paris", new Sloop("Paris", "Hal Henry", 5, 200, true));
+        reserveFleet.put("Beast", new Sloop("Beast", "Ian Idle", 5, 400, false));
+        reserveFleet.put("Athena", new Sloop("Athena", "John Jones", 5, 100, true));
 
      }
      
     private void setupEncounters()
     {
+        encounters.put(1, new Encounter(1, EncounterType.BATTLE, "Trafalgar", 3, 300));
+        encounters.put(2, new Encounter(2, EncounterType.SKIRMISH, "Belle Isle", 3, 120));
+        encounters.put(3, new Encounter(3, EncounterType.BLOCKADE, "Brest", 3, 150));
+        encounters.put(4, new Encounter(4, EncounterType.BATTLE, "St Malo", 9, 200));
+        encounters.put(5, new Encounter(5, EncounterType.BLOCKADE, "Dieppe", 7, 90));
+        encounters.put(6, new Encounter(6, EncounterType.SKIRMISH, "Jersey", 8, 45));
+        encounters.put(7, new Encounter(7, EncounterType.BLOCKADE, "Nantes", 6, 130));
+        encounters.put(8, new Encounter(8, EncounterType.BATTLE, "Finisterre", 4, 100));
+        encounters.put(9, new Encounter(9, EncounterType.SKIRMISH, "Biscay", 5, 200));
+        encounters.put(10, new Encounter(10, EncounterType.BATTLE, "Cadiz", 1, 250));
   
     }
         
