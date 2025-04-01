@@ -15,7 +15,7 @@ public class SeaBattles implements BATHS
     // may have one HashMap and select on stat
 
     private String admiral;
-    private double warChest = 1000;
+    private double warChest;
     
     private Map<String, Ship> reserveFleet = new HashMap<>();
     private Map<String, Ship> squadron = new HashMap<>();
@@ -29,7 +29,7 @@ public class SeaBattles implements BATHS
      */  
     public SeaBattles(String adm)
     {
-      
+       this.warChest = 1000;
         
        setupShips();
        setupEncounters();
@@ -80,7 +80,17 @@ public class SeaBattles implements BATHS
      */
     public double getWarChest()
     {
-        return 0;
+        return warChest;
+    }
+    
+        private double addWarChest(double moneyAdded)
+    {
+        return warChest = warChest + moneyAdded;
+    }
+    
+    private double subtractWarChest(double moneySubtract)
+    {
+        return warChest = warChest + moneySubtract;
     }
     
     
