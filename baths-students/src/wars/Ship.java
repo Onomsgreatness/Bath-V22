@@ -10,18 +10,16 @@ import java.io.*;
  */
 public abstract class Ship {
     private String name;
-    private String captain;
+    private String captainName;
     private int battleSkill;
     private int commissionFee;
     private boolean ShipStatus;
     private ShipState state;
     
-    public static final boolean ACTIVE = true;
-    public static final boolean DEACTIVATED = false;
     
     public Ship (String name, String captain, int battleSkill, int commissionFee){
         this.name = name;
-        this.captain = captain;
+        this.captainName = captain;
         this.battleSkill = battleSkill;
         this.commissionFee = commissionFee;
     }
@@ -31,7 +29,7 @@ public abstract class Ship {
     }
     
     public String getCaptainName(){
-        return captain;
+        return captainName;
     }
     
     public int getBattleSkill(){
@@ -62,13 +60,11 @@ public abstract class Ship {
         return state == ShipState.SUNK;
     }
     
-    //Abstract method to be implemented by subclasses
-    //public abstract void attack(); //Each shipType may implement differently
     
     public String toString(){
         return 
             "Ship Name = " + name +
-            " | Captain Name = " + captain +
+            " | Captain Name = " + captainName +
             " | Battle Skill = " + battleSkill +
             " | Commission Fee = " + commissionFee;
     }
