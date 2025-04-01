@@ -8,11 +8,16 @@ import java.io.*;
  *
  * @author Pasha
  */
-public class Ship {
+public abstract class Ship {
     private String name;
     private String captainName;
     private int battleSkill;
     private int commissionFee;
+    private boolean ShipStatus;
+    private ShipState state;
+    
+    public static final boolean ACTIVE = true;
+    public static final boolean DEACTIVATED = false;
     
     public Ship (String name, String captain, int battleSkill, int commissionFee){
         this.name = name;
@@ -37,6 +42,28 @@ public class Ship {
         return commissionFee;
     }
     
+     public void setState(ShipState newState) {
+        this.state = newState;
+    }
+    
+    public boolean isActive() {
+        return state == ShipState.ACTIVE;
+    }
+    
+    public boolean isInReserve() {
+        return state == ShipState.RESERVE;
+    }
+    
+    public boolean isResting() {
+        return state == ShipState.RESTING;
+    }
+    
+    public boolean isSunk() {
+        return state == ShipState.SUNK;
+    }
+    
+    //Abstract method to be implemented by subclasses
+    //public abstract void attack(); //Each shipType may implement differently
     
     public String toString(){
         return 

@@ -23,9 +23,9 @@ public class Teamwork
         details[2] = "Onome";
         details[3] = "21092431";
 
-        details[4] = "surname of member2";
-        details[5] = "first name of member2";
-        details[6] = "SRN of member2";
+        details[4] = "Adeniyi";
+        details[5] = "Adebola";
+        details[6] = "22086761";
 
         details[7] = "Animashaun";
         details[8] = "Ayanfeoluwa";

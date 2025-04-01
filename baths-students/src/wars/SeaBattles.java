@@ -83,7 +83,7 @@ public class SeaBattles implements BATHS
         return warChest;
     }
     
-    private double addWarChest(double moneyAdded)
+        private double addWarChest(double moneyAdded)
     {
         return warChest = warChest + moneyAdded;
     }
@@ -99,17 +99,12 @@ public class SeaBattles implements BATHS
      **/
     public String getReserveFleet()
     {   //assumes reserves is a Hashmap
-        if (reserveFleet.entrySet() != null) {  
-            StringBuilder sb = new StringBuilder();
-            for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
-                sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-            }
-            return sb.toString();
-        }
-        else {
-            return "Ship not found";
-        }
- 
+       
+     StringBuilder sb = new StringBuilder();
+    for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
+        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+    }
+    return sb.toString();
     
     }
     
@@ -119,16 +114,11 @@ public class SeaBattles implements BATHS
      **/
     public String getSquadron()
     {
-        if (squadron.entrySet() != null){
-            StringBuilder sb = new StringBuilder();
-            for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
-                sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-            }
-            return sb.toString();
-        }
-        else {
-            return "Ship not found";
-        }
+    StringBuilder sb = new StringBuilder();
+    for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
+        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+    }
+    return sb.toString();
     }
     
     /**Returns a String representation of the ships sunk (or "no ships sunk yet")
@@ -137,7 +127,7 @@ public class SeaBattles implements BATHS
     public String getSunkShips()
     {
        
-        return "No ships";
+        return "No ships.";
     }
     
     /**Returns a String representation of the all ships in the game
@@ -146,16 +136,18 @@ public class SeaBattles implements BATHS
      **/
     public String getAllShips()
     {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Reserve Fleet:\n");
-        for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
-            sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-        }
-        sb.append("\nSquadron:\n");
-        for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
-            sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-        }
-        return sb.toString();
+    StringBuilder sb = new StringBuilder();
+    sb.append("Reserve Fleet:\n");
+    for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
+        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+    }
+
+    sb.append("\nSquadron:\n");
+    for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
+        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+    }
+
+    return sb.toString();
     }
     
     
@@ -184,8 +176,29 @@ public class SeaBattles implements BATHS
      **/        
     public String commissionShip(String nme)
     {
-        
-        return ".- Ship not found";
+     // 1. Check if ship exists in reserve
+    if (!reserveFleet.containsKey(nme)) {
+        return "Not found";
+        }
+     // 2. Check if ship is already in squadron
+        Ship ship = reserveFleet.get(nme);
+
+        // 3. Check if ship is in reserve state
+    if (!ship.isInReserve()) {
+        return "Not available";
+    }
+    
+        // 4. Check war chest balance
+    if (warChest < ship.getCommissionFee()) {
+            return "Not enough money";
+        }
+
+        warChest -= ship.getCommissionFee();
+        ship.setState(ShipState.ACTIVE);
+        reserveFleet.remove(nme);
+        squadron.put(nme, ship);
+
+        return nme + " commissioned successfully";
     }
         
     /** Returns true if the ship with the name is in the admiral's squadron, false otherwise.
@@ -208,8 +221,25 @@ public class SeaBattles implements BATHS
      * @return true if ship decommissioned, else false
      **/
     public boolean decommissionShip(String nme)
-    {
+     {
+         // 1. Check if ship is in squadron
+    if (!squadron.containsKey(nme)) {
         return false;
+    }
+    
+    Ship ship = squadron.get(nme);
+    
+    // 2. Can't decommission sunk ships
+    if (ship.isSunk()) {
+        return false;
+    }
+    
+    // Perform decommissioning
+    ship.setState(ShipState.RESERVE);
+    squadron.remove(nme);
+    reserveFleet.put(nme, ship);
+    warChest += (ship.getCommissionFee() / 2); // Refund half fee
+    
     }
     
   
@@ -229,9 +259,6 @@ public class SeaBattles implements BATHS
      **/
      public boolean isEncounter(int num)
      {
-        if (encounters.containsKey(num)){
-            return true;
-        };
          return false;
      }
      
@@ -267,12 +294,8 @@ public class SeaBattles implements BATHS
      **/
     public String getEncounter(int num)
     {
-        if (encounters.containsKey(num)){
-            return encounters.get(num).toString();
-        }
-        else {
-            return "No such encounter";
-        }
+        
+        return "\nNo such encounter";
     }
     
     /** Provides a String representation of all encounters 
@@ -280,14 +303,9 @@ public class SeaBattles implements BATHS
      **/
     public String getAllEncounters()
     {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\nEncounters: \n");
-        for (Map.Entry<Integer, Encounter> entry : encounters.entrySet()) {
-            sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-        }
+ 
         return "No encounters";
     }
-    
     
 
     //****************** private methods for Task 4 functionality*******************
