@@ -146,18 +146,16 @@ public class SeaBattles implements BATHS
      **/
     public String getAllShips()
     {
-    StringBuilder sb = new StringBuilder();
-    sb.append("Reserve Fleet:\n");
-    for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
-        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-    }
-
-    sb.append("\nSquadron:\n");
-    for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
-        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-    }
-
-    return sb.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Reserve Fleet:\n");
+        for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
+            sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+        }
+        sb.append("\nSquadron:\n");
+        for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
+            sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+        }
+        return sb.toString();
     }
     
     
@@ -266,8 +264,12 @@ public class SeaBattles implements BATHS
      **/
     public String getEncounter(int num)
     {
-        
-        return "\nNo such encounter";
+        if (encounters.containsKey(num)){
+            return encounters.get(num).toString();
+        }
+        else {
+            return "No such encounter";
+        }
     }
     
     /** Provides a String representation of all encounters 
