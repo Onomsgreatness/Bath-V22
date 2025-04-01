@@ -167,7 +167,7 @@ public class SeaBattles implements BATHS
     public String commissionShip(String nme)
     {
         
-        return "- Ship not found";
+        return ".- Ship not found";
     }
         
     /** Returns true if the ship with the name is in the admiral's squadron, false otherwise.
