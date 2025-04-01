@@ -100,12 +100,16 @@ public class SeaBattles implements BATHS
     public String getReserveFleet()
     {   //assumes reserves is a Hashmap
        
-     StringBuilder sb = new StringBuilder();
-    for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
-        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-    }
-    return sb.toString();
-    
+        if (reserveFleet.entrySet() != null) {  
+            StringBuilder sb = new StringBuilder();
+            for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
+                sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+            }
+            return sb.toString();
+        }
+        else {
+            return "Ship not found";
+        }
     }
     
     /**Returns a String representation of the ships in the admiral's squadron
@@ -114,11 +118,16 @@ public class SeaBattles implements BATHS
      **/
     public String getSquadron()
     {
-    StringBuilder sb = new StringBuilder();
-    for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
-        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-    }
-    return sb.toString();
+        if (squadron.entrySet() != null){
+            StringBuilder sb = new StringBuilder();
+            for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
+                sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+            }
+            return sb.toString();
+        }
+        else {
+                return "Ship not found";
+        }
     }
     
     /**Returns a String representation of the ships sunk (or "no ships sunk yet")
@@ -136,18 +145,16 @@ public class SeaBattles implements BATHS
      **/
     public String getAllShips()
     {
-    StringBuilder sb = new StringBuilder();
-    sb.append("Reserve Fleet:\n");
-    for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
-        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-    }
-
-    sb.append("\nSquadron:\n");
-    for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
-        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-    }
-
-    return sb.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Reserve Fleet:\n");
+        for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
+            sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+        }
+        sb.append("\nSquadron:\n");
+        for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
+            sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+        }
+        return sb.toString();
     }
     
     
@@ -239,7 +246,7 @@ public class SeaBattles implements BATHS
     squadron.remove(nme);
     reserveFleet.put(nme, ship);
     warChest += (ship.getCommissionFee() / 2); // Refund half fee
-    
+    return true;
     }
     
   
@@ -259,6 +266,9 @@ public class SeaBattles implements BATHS
      **/
      public boolean isEncounter(int num)
      {
+         if (encounters.containsKey(num)){
+            return true;
+        };
          return false;
      }
      
@@ -294,8 +304,13 @@ public class SeaBattles implements BATHS
      **/
     public String getEncounter(int num)
     {
-        
-        return "\nNo such encounter";
+        if (encounters.containsKey(num)){
+            return encounters.get(num).toString();
+        }
+        else {
+            return "No such encounter";
+        }
+
     }
     
     /** Provides a String representation of all encounters 
@@ -303,7 +318,11 @@ public class SeaBattles implements BATHS
      **/
     public String getAllEncounters()
     {
- 
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nEncounters: \n");
+        for (Map.Entry<Integer, Encounter> entry : encounters.entrySet()) {
+            sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+        }
         return "No encounters";
     }
     
