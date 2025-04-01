@@ -13,12 +13,17 @@ public class Ship {
     private String captain;
     private int battleSkill;
     private int commissionFee;
+    private boolean ShipStatus;
     
-    public Ship (String name, String captain, int battleSkill, int commissionFee){
+    public static final boolean ACTIVE = true;
+    public static final boolean DEACTIVATED = false;
+    
+    public Ship (String name, String captain, int battleSkill, int commissionFee, boolean ShipStatus){
         this.name = name;
         this.captain = captain;
         this.battleSkill = battleSkill;
         this.commissionFee = commissionFee;
+        this.ShipStatus = ShipStatus;
     }
     
     public String getShipName(){
@@ -37,26 +42,26 @@ public class Ship {
         return commissionFee;
     }
     
+    public boolean isActive() {
+        return ShipStatus == ACTIVE;
+    }
     
-    public String toString(){
+    public boolean isNotActive() {
+        return ShipStatus == DEACTIVATED;
+    }
+    
+    public void setStatus(boolean newStatus) {
+    this.ShipStatus = newStatus;
+}
+   public String toString(){
         return 
             "Ship Name = " + name +
             " | Captain Name = " + captain +
             " | Battle Skill = " + battleSkill +
             " | Commission Fee = " + commissionFee;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
     
 }
 
