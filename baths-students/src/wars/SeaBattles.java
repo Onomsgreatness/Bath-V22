@@ -231,6 +231,9 @@ public class SeaBattles implements BATHS
      **/
      public boolean isEncounter(int num)
      {
+        if (encounters.containsKey(num)){
+            return true;
+        };
          return false;
      }
      
