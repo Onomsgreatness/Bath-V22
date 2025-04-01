@@ -239,7 +239,7 @@ public class SeaBattles implements BATHS
     squadron.remove(nme);
     reserveFleet.put(nme, ship);
     warChest += (ship.getCommissionFee() / 2); // Refund half fee
-    
+    return true;
     }
     
   
