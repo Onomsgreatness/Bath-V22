@@ -117,7 +117,7 @@ public class SeaBattles implements BATHS
     public String getSunkShips()
     {
        
-        return "No ships";
+        return "No ships.";
     }
     
     /**Returns a String representation of the all ships in the game
