@@ -16,8 +16,6 @@ public abstract class Ship {
     private boolean ShipStatus;
     private ShipState state;
     
-    public static final boolean ACTIVE = true;
-    public static final boolean DEACTIVATED = false;
     
     public Ship (String name, String captain, int battleSkill, int commissionFee){
         this.name = name;
@@ -62,8 +60,6 @@ public abstract class Ship {
         return state == ShipState.SUNK;
     }
     
-    //Abstract method to be implemented by subclasses
-    //public abstract void attack(); //Each shipType may implement differently
     
     public String toString(){
         return 
