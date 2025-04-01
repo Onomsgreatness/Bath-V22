@@ -14,16 +14,16 @@ public class Ship {
     private int battleSkill;
     private int commissionFee;
     private boolean ShipStatus;
+    private ShipState state;
     
     public static final boolean ACTIVE = true;
     public static final boolean DEACTIVATED = false;
     
-    public Ship (String name, String captain, int battleSkill, int commissionFee, boolean ShipStatus){
+    public Ship (String name, String captain, int battleSkill, int commissionFee){
         this.name = name;
         this.captain = captain;
         this.battleSkill = battleSkill;
         this.commissionFee = commissionFee;
-        this.ShipStatus = ShipStatus;
     }
     
     public String getShipName(){
@@ -42,17 +42,27 @@ public class Ship {
         return commissionFee;
     }
     
+    public void setState(ShipState newState) {
+        this.state = newState;
+    }
+    
     public boolean isActive() {
-        return ShipStatus == ACTIVE;
+        return state == ShipState.ACTIVE;
     }
     
-    public boolean isNotActive() {
-        return ShipStatus == DEACTIVATED;
+    public boolean isInReserve() {
+        return state == ShipState.RESERVE;
     }
     
-    public void setStatus(boolean newStatus) {
-    this.ShipStatus = newStatus;
-}
+    public boolean isResting() {
+        return state == ShipState.RESTING;
+    }
+    
+    public boolean isSunk() {
+        return state == ShipState.SUNK;
+    }
+    
+    
    public String toString(){
         return 
             "Ship Name = " + name +
