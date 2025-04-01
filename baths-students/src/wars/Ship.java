@@ -8,7 +8,7 @@ import java.io.*;
  *
  * @author Pasha
  */
-public class Ship {
+public abstract class Ship {
     private String name;
     private String captain;
     private int battleSkill;
@@ -37,6 +37,8 @@ public class Ship {
         return commissionFee;
     }
     
+    //Abstract method to be implemented by subclasses
+    //public abstract void attack(); //Each shipType may implement differently
     
     public String toString(){
         return 
