@@ -280,9 +280,14 @@ public class SeaBattles implements BATHS
      **/
     public String getAllEncounters()
     {
- 
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nEncounters: \n");
+        for (Map.Entry<Integer, Encounter> entry : encounters.entrySet()) {
+            sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+        }
         return "No encounters";
     }
+    
     
 
     //****************** private methods for Task 4 functionality*******************
