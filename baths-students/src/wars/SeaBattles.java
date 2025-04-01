@@ -83,7 +83,7 @@ public class SeaBattles implements BATHS
         return warChest;
     }
     
-        private double addWarChest(double moneyAdded)
+    private double addWarChest(double moneyAdded)
     {
         return warChest = warChest + moneyAdded;
     }
@@ -99,12 +99,17 @@ public class SeaBattles implements BATHS
      **/
     public String getReserveFleet()
     {   //assumes reserves is a Hashmap
-       
-     StringBuilder sb = new StringBuilder();
-    for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
-        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-    }
-    return sb.toString();
+        if (reserveFleet.entrySet() != null) {  
+            StringBuilder sb = new StringBuilder();
+            for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
+                sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+            }
+            return sb.toString();
+        }
+        else {
+            return "Ship not found";
+        }
+ 
     
     }
     
@@ -114,11 +119,16 @@ public class SeaBattles implements BATHS
      **/
     public String getSquadron()
     {
-    StringBuilder sb = new StringBuilder();
-    for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
-        sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-    }
-    return sb.toString();
+        if (squadron.entrySet() != null){
+            StringBuilder sb = new StringBuilder();
+            for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
+                sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
+            }
+            return sb.toString();
+        }
+        else {
+            return "Ship not found";
+        }
     }
     
     /**Returns a String representation of the ships sunk (or "no ships sunk yet")
