@@ -384,10 +384,10 @@ public class SeaBattles implements BATHS
              
              if (squadron.isEmpty()){
                  return "2 - Encounter lost on battle skill and " + chosenShipName +
-                         "sunk. You have been defeated. \nWar Chest: " + warChest;
+                         " sunk. You have been defeated. \nWar Chest: " + warChest;
              }
              return "2 - Encounter lost on battle skill and " + chosenShipName +
-                         "sunk. \nWar Chest: " + warChest;
+                         " sunk. \nWar Chest: " + warChest;
          }
     }
     
@@ -408,7 +408,8 @@ public class SeaBattles implements BATHS
             return ship instanceof ManOWar || ship instanceof Frigate;
         } else if (encounterType.equals(EncounterType.SKIRMISH)) {
             return ship instanceof Frigate || ship instanceof Sloop;
-        }
+        } // Do RESTING
+          // Sloops cant fight Battles
         
         return false;
     }
