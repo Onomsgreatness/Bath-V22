@@ -97,7 +97,7 @@ public class SeaBattles implements BATHS
     public boolean isDefeated()
     {
     // Check if war chest is empty
-    if (warChest > 0) {
+    if (warChest < 0) {
         return false;
     }
     
@@ -350,11 +350,47 @@ public class SeaBattles implements BATHS
       * @return a String showing the result of fighting the encounter
       */ 
     public String fightEncounter(int encNo)
-    {
-         
+    { 
+        Encounter encounter = encounters.get(encNo);
+        if (encounter == null){
+             return "-1 - No such encounter. \nWar chest: " + warChest; // encounter not found
+            }
              
-        return "Not done";
+        Ship chosenShip = null;
+         
+        for (Ship ship : squadron.values()){
+             if (canFightEncounter(ship.getShipName(), encNo)){ //Returns first capable ship found
+                 chosenShip = ship; 
+                 break;
+             }
+        }
+             
+         if (chosenShip == null){
+             warChest -= warChest - encounter.getPrizeMoney();
+             return "1 - Encounter lost as no ship available. \nWar Chest:" + warChest;
+         }
+         
+         String chosenShipName = chosenShip.getShipName();
+         if (shipIsStronger(chosenShipName, encNo)){
+             warChest += warChest + encounter.getPrizeMoney();
+             chosenShip.setState(ShipState.RESTING);
+             return "0 - Encounter won by " + chosenShipName + ". \nWar Chest: " + warChest;
+         }
+         
+         else {
+             warChest -= warChest - encounter.getPrizeMoney();
+             chosenShip.setState(ShipState.SUNK);
+             squadron.remove(chosenShipName);
+             
+             if (squadron.isEmpty()){
+                 return "2 - Encounter lost on battle skill and " + chosenShipName +
+                         "sunk. You have been defeated. \nWar Chest: ";
+             }
+             return "2 - Encounter lost on battle skill and " + chosenShipName +
+                         "sunk. \nWar Chest: ";
+         }
     }
+    
     
     public boolean canFightEncounter(String shipname, int eNo){
         Ship ship = getShip(shipname);
