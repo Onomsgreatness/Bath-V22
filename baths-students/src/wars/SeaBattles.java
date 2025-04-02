@@ -319,6 +319,28 @@ public class SeaBattles implements BATHS
             
         return "Not done";
     }
+    
+       // private boolean shipIsStronger(String shipnme, int encNo){
+   //     Ship ship = getShip(shipnme);
+   //     if (ship == null){
+   //         return false; // ship not found
+            
+       // Encounter encounter = encounters.get(encNo);
+    //    }
+   // }
+    
+   // private Encounter getEncounter (int encNo){
+   //     if (encounters.containsKey(encNo)){
+   //         return encounters.get(encNo);
+   //     }
+   // }
+    
+    private Ship getShip(String shipName) {
+        if (reserveFleet.containsKey(shipName)) {
+            return reserveFleet.get(shipName);
+        }
+        return squadron.get(shipName); // Returns null if not found
+    }
 
     /** Provides a String representation of an encounter given by 
      * the encounter number
