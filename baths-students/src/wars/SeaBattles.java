@@ -366,28 +366,28 @@ public class SeaBattles implements BATHS
         }
              
          if (chosenShip == null){
-             warChest -= warChest - encounter.getPrizeMoney();
-             return "1 - Encounter lost as no ship available. \nWar Chest:" + warChest;
+             warChest = warChest - encounter.getPrizeMoney();
+             return "1 - Encounter lost as no ship available. \nWar Chest: " + warChest;
          }
          
          String chosenShipName = chosenShip.getShipName();
          if (shipIsStronger(chosenShipName, encNo)){
-             warChest += warChest + encounter.getPrizeMoney();
+             warChest = warChest + encounter.getPrizeMoney();
              chosenShip.setState(ShipState.RESTING);
              return "0 - Encounter won by " + chosenShipName + ". \nWar Chest: " + warChest;
          }
          
          else {
-             warChest -= warChest - encounter.getPrizeMoney();
+             warChest = warChest - encounter.getPrizeMoney();
              chosenShip.setState(ShipState.SUNK);
              squadron.remove(chosenShipName);
              
              if (squadron.isEmpty()){
                  return "2 - Encounter lost on battle skill and " + chosenShipName +
-                         "sunk. You have been defeated. \nWar Chest: ";
+                         "sunk. You have been defeated. \nWar Chest: " + warChest;
              }
              return "2 - Encounter lost on battle skill and " + chosenShipName +
-                         "sunk. \nWar Chest: ";
+                         "sunk. \nWar Chest: " + warChest;
          }
     }
     
@@ -471,11 +471,11 @@ public class SeaBattles implements BATHS
      {
         reserveFleet.put("Victory", new ManOWar("Victory", "Alan Aikin", 3, 500, 3, 30));
         reserveFleet.put("Sophie", new Frigate("Sophie", "Ben Baggins", 8, 160, 16, true));
-        reserveFleet.put("Endeavour", new ManOWar("Endeavour", "Col Cannon", 4, 500, 2, 20));
+        reserveFleet.put("Endeavour", new ManOWar("Endeavour", "Col Cannon", 4, 300, 2, 20));
         reserveFleet.put("Arrow", new Sloop("Arrow", "Dan Dare", 5, 150, true));
-        reserveFleet.put("Belerophon", new ManOWar("Belerophon", "Ed Evans", 8, 900, 3, 50));
-        reserveFleet.put("Surprise", new Frigate("Surprise", "Fred Fox", 6, 300, 10, false));
-        reserveFleet.put("Jupiter", new Frigate("Jupiter", "Gil Gamage", 7, 30, 20, false));
+        reserveFleet.put("Belerophon", new ManOWar("Belerophon", "Ed Evans", 8, 500, 3, 50));
+        reserveFleet.put("Surprise", new Frigate("Surprise", "Fred Fox", 6, 100, 10, false));
+        reserveFleet.put("Jupiter", new Frigate("Jupiter", "Gil Gamage", 7, 200, 20, false));
         reserveFleet.put("Paris", new Sloop("Paris", "Hal Henry", 5, 200, true));
         reserveFleet.put("Beast", new Sloop("Beast", "Ian Idle", 5, 400, false));
         reserveFleet.put("Athena", new Sloop("Athena", "John Jones", 5, 100, true));
