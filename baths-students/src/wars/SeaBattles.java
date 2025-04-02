@@ -2,6 +2,7 @@ package wars;
 
 import java.util.*;
 import java.io.*;
+import wars.Ship;
 /**
  * This class implements the behaviour expected from the BATHS
  system as required for 5COM2007 Cwk1B BATHS - Feb 2025
@@ -158,9 +159,32 @@ public class SeaBattles implements BATHS
      **/
     public String getSunkShips()
     {
-       
-        return "No ships.";
+    StringBuilder sunkShips = new StringBuilder();
+    
+    // Check squadron
+    for (Ship ship : squadron.values()) {
+        if (ship.isSunk()) {
+            if (!sunkShips.isEmpty()) {
+                sunkShips.append(", ");
+            }
+            sunkShips.append(ship.getShipName());
+        }
     }
+    
+    // Check reserve fleet
+    for (Ship ship : reserveFleet.values()) {
+        if (ship.isSunk()) {
+            if (!sunkShips.isEmpty()) {
+                sunkShips.append(", ");
+            }
+            sunkShips.append(ship.getShipName());
+        }
+    }
+    
+    return sunkShips.isEmpty() 
+        ? "No ships sunk yet." 
+        : "Sunk ships: " + sunkShips.toString();
+}
     
     /**Returns a String representation of the all ships in the game
      * including their status
