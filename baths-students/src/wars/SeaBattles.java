@@ -356,6 +356,27 @@ public class SeaBattles implements BATHS
         return "Not done";
     }
     
+    public boolean canFightEncounter(String shipname, int eNo){
+        Ship ship = getShip(shipname);
+        Encounter encounter = encounters.get(eNo);
+        EncounterType encounterType = encounter.getEncounterType();
+        
+        if (ship == null || encounter == null) {
+            return false; // Ship or encounter does not exist
+        }
+       
+        
+        if (encounterType.equals(EncounterType.BLOCKADE)) {
+            return ship instanceof ManOWar || (ship instanceof Frigate && ((Frigate) ship).getPinnanceOrDoctor());
+        } else if (encounterType.equals(EncounterType.BATTLE)) {
+            return ship instanceof ManOWar || ship instanceof Frigate;
+        } else if (encounterType.equals(EncounterType.SKIRMISH)) {
+            return ship instanceof Frigate || ship instanceof Sloop;
+        }
+        
+        return false;
+    }
+    
     private boolean shipIsStronger(String shipnme, int encNo){
         Ship ship = getShip(shipnme);
         if (ship == null){
