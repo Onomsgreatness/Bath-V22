@@ -60,10 +60,33 @@ public class SeaBattles implements BATHS
      **/
     public String toString()
     {
-        
-        return "null";
+        // Using StringBuilder for efficient string concatenation
+        String s = "";
+
+        // Add admiral and war chest info
+        s += "Admiral: "+ admiral + "\n";  // Name of the admiral
+        s += "War Chest: £" + warChest + "\n";  // State of the war chest
+        s += "Ship State: " + isDefeated()  + "\n";  // Whether defeated or not
+
+        // Add ships currently in the squadron
+        String squadronShips = getSquadron();
+        if (squadronShips.equals("No ships")) {
+            s += "No ships currently in Squadron.\n";
+        } else {
+            s += "Ships currently in the squadron:\n" + squadronShips;
+        }
+
+        // Add ships in the reserve fleet
+        String reserveFleetShips = getReserveFleet();
+        if (reserveFleetShips.equals("No ships")) {
+            s += "No reserve fleet.\n";
+        } else {
+            s += "Reserve Fleet:\n" + reserveFleetShips;
+        }
+
+        return s;  
     }
-    
+
     
     /** returns true if War Chest <=0 and the admiral's squadron has no ships which 
      * can be retired. 
@@ -118,18 +141,18 @@ public class SeaBattles implements BATHS
      **/
     public String getSquadron()
     {
-        if (squadron.entrySet() != null){
+        // If the squadron is empty, return "No ships"
+        if (squadron.isEmpty()) {
+            return "No ships";
+        } else {
             StringBuilder sb = new StringBuilder();
             for (Map.Entry<String, Ship> entry : squadron.entrySet()) {
                 sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
             }
-            return sb.toString();
-        }
-        else {
-                return "Ship not found";
+            return sb.toString();  // Return the squadron details
         }
     }
-    
+
     /**Returns a String representation of the ships sunk (or "no ships sunk yet")
      * @return a String representation of the ships sunk
      **/
