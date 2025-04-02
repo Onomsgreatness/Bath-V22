@@ -96,8 +96,21 @@ public class SeaBattles implements BATHS
      */
     public boolean isDefeated()
     {
+    // Check if war chest is empty
+    if (warChest > 0) {
         return false;
     }
+    
+    // Check if any ships can be retired
+    for (Ship ship : squadron.values()) {
+        if (!ship.isSunk()) {
+            return false;
+        }
+    }
+    
+    // If we get here, war chest is <= 0 and no retirable ships
+    return true;
+}
     
     /** returns the amount of money in the War Chest
      * @returns the amount of money in the War Chest
@@ -237,14 +250,13 @@ public class SeaBattles implements BATHS
      // 2. Check if ship is already in squadron
         Ship ship = reserveFleet.get(nme);
 
-        // 3. Check if ship is in reserve state
-    if (!ship.isInReserve()) {
-        return "Not available";
-    }
-    
-        // 4. Check war chest balance
+        // 3. Check war chest balance
     if (warChest < ship.getCommissionFee()) {
             return "Not enough money";
+        }
+    
+    if (ship.isInReserve()) {
+            return "Not available";
         }
 
         warChest -= ship.getCommissionFee();
@@ -252,7 +264,7 @@ public class SeaBattles implements BATHS
         reserveFleet.remove(nme);
         squadron.put(nme, ship);
 
-        return nme + " commissioned successfully";
+        return "Ship commissioned";
     }
         
     /** Returns true if the ship with the name is in the admiral's squadron, false otherwise.
@@ -342,6 +354,27 @@ public class SeaBattles implements BATHS
          
              
         return "Not done";
+    }
+    
+    public boolean canFightEncounter(String shipname, int eNo){
+        Ship ship = getShip(shipname);
+        Encounter encounter = encounters.get(eNo);
+        EncounterType encounterType = encounter.getEncounterType();
+        
+        if (ship == null || encounter == null) {
+            return false; // Ship or encounter does not exist
+        }
+       
+        
+        if (encounterType.equals(EncounterType.BLOCKADE)) {
+            return ship instanceof ManOWar || (ship instanceof Frigate && ((Frigate) ship).getPinnanceOrDoctor());
+        } else if (encounterType.equals(EncounterType.BATTLE)) {
+            return ship instanceof ManOWar || ship instanceof Frigate;
+        } else if (encounterType.equals(EncounterType.SKIRMISH)) {
+            return ship instanceof Frigate || ship instanceof Sloop;
+        }
+        
+        return false;
     }
     
     private boolean shipIsStronger(String shipnme, int encNo){
