@@ -237,14 +237,13 @@ public class SeaBattles implements BATHS
      // 2. Check if ship is already in squadron
         Ship ship = reserveFleet.get(nme);
 
-        // 3. Check if ship is in reserve state
-    if (!ship.isInReserve()) {
-        return "Not available";
-    }
-    
-        // 4. Check war chest balance
+        // 3. Check war chest balance
     if (warChest < ship.getCommissionFee()) {
             return "Not enough money";
+        }
+    
+    if (ship.isInReserve()) {
+            return "Not available";
         }
 
         warChest -= ship.getCommissionFee();
@@ -252,7 +251,7 @@ public class SeaBattles implements BATHS
         reserveFleet.remove(nme);
         squadron.put(nme, ship);
 
-        return nme + " commissioned successfully";
+        return "Ship commissioned";
     }
         
     /** Returns true if the ship with the name is in the admiral's squadron, false otherwise.

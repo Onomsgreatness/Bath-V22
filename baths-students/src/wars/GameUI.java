@@ -41,9 +41,18 @@ public class GameUI
             } 
             else if (choice == 4)
             {
-                //write your code here
-
+            System.out.println("Enter Ship name to commission:");
+            myIn.nextLine(); 
+            String shipName = (myIn.nextLine()).trim();
+            String result = myBattles.commissionShip(shipName);
+            System.out.println(result);
+    
+            // Show updated war chest and squadron
+            System.out.println("\nUpdated Status:");
+            System.out.println("War Chest: " + myBattles.getWarChest());
+            System.out.println("Squadron: \n" + myBattles.getSquadron());
             }
+            
             else if (choice == 5)
             {
        	       //write your code here
@@ -52,20 +61,24 @@ public class GameUI
             }
             else if (choice ==6)
             {
-	        //write your code here
+            System.out.println("\nEnter ship name to restore to active status:");
+            myIn.nextLine();
+            String shipName = myIn.nextLine().trim();
 
-
+            myBattles.restoreShip(shipName);
+            System.out.println("Successfully restored ");
             }
+
             else if (choice == 7)
             {
-                //write your code here
-
-
+            System.out.println("Enter Ship name to decommission:");
+            myIn.nextLine(); 
+            String shipName = (myIn.nextLine()).trim();
+            
+            boolean success = myBattles.decommissionShip(shipName);
+            System.out.println(success);
             }
-            else if (choice==8)
-            {
-                System.out.println(myBattles.toString());
-            }
+            
 //            else if (choice == 9) // Task 7 only
 //            {
 //                System.out.println("Write to file");
