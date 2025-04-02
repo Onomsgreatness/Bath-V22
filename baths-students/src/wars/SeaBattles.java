@@ -96,8 +96,21 @@ public class SeaBattles implements BATHS
      */
     public boolean isDefeated()
     {
+    // Check if war chest is empty
+    if (warChest > 0) {
         return false;
     }
+    
+    // Check if any ships can be retired
+    for (Ship ship : squadron.values()) {
+        if (!ship.isSunk()) {
+            return false;
+        }
+    }
+    
+    // If we get here, war chest is <= 0 and no retirable ships
+    return true;
+}
     
     /** returns the amount of money in the War Chest
      * @returns the amount of money in the War Chest
