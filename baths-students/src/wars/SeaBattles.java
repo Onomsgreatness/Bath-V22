@@ -30,6 +30,7 @@ public class SeaBattles implements BATHS
      */  
     public SeaBattles(String adm)
     {
+       this.admiral = adm;
        this.warChest = 1000;
         
        setupShips();
@@ -66,13 +67,13 @@ public class SeaBattles implements BATHS
 
         // Add admiral and war chest info
         s += "Admiral: "+ admiral + "\n";  // Name of the admiral
-        s += "War Chest: £" + warChest + "\n";  // State of the war chest
-        s += "Ship State: " + isDefeated()  + "\n";  // Whether defeated or not
+        s += "War Chest: " + warChest + "\n";  // State of the war chest
+        s += "Ship State: " + isStringDefeated()  + "\n";  // Whether defeated or not
 
         // Add ships currently in the squadron
         String squadronShips = getSquadron();
-        if (squadronShips.equals("No ships")) {
-            s += "No ships currently in Squadron.\n";
+        if (squadronShips.equals("No ships \n")) {
+            s += "No ships"; //No ships currently in Squadron
         } else {
             s += "Ships currently in the squadron:\n" + squadronShips;
         }
@@ -98,7 +99,16 @@ public class SeaBattles implements BATHS
     {
        return warChest <= 0 && 
            squadron.values().stream().allMatch(Ship::isSunk);
-}
+    }
+    
+    public String isStringDefeated()
+    {
+       if (isDefeated())
+       {
+           return "Is Not Ok";
+       }
+       else {return "Is OK";}
+    }
     
     /** returns the amount of money in the War Chest
      * @returns the amount of money in the War Chest
