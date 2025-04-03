@@ -67,15 +67,23 @@ public class GameGUI
         JMenu fileMenu = new JMenu("Ships");
         menubar.add(fileMenu);
         
+        
+        
         JMenuItem listShipItem = new JMenuItem("List reserve Ships");
         listShipItem.addActionListener(new ListFleetHandler());
         fileMenu.add(listShipItem);
+        
+        JMenuItem listSquadron = new JMenuItem("List Squadron Ships");
+        listShipItem.addActionListener(new ListSquadronHandler());
+        fileMenu.add(listSquadron);
         
         JMenuItem decommission = new JMenuItem("De-ommission Ship");
         decommission.addActionListener(new DecommissionHandler());
         fileMenu.add(decommission);
         
- 
+        JMenuItem viewShipItem = new JMenuItem("View Ship");
+        viewShipItem.addActionListener(new ViewShipHandler());
+        fileMenu.add(viewShipItem);
         
     }
 
@@ -92,6 +100,18 @@ public class GameGUI
         }
     }
 
+    
+    private class ListSquadronHandler implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            listing.setVisible(true);
+            String xx = gp.getSquadron();
+            listing.setText(xx);
+        }
+    }
+    
+    
     
     private class ClearHandler implements ActionListener
     {
@@ -125,6 +145,31 @@ public class GameGUI
     }
     
    
+    /**
+     * Handles viewing a ship's details.
+     */
+    private class ViewShipHandler implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            // Ask user for ship name
+            String shipName = JOptionPane.showInputDialog("Enter Ship Name: ");
+
+            if (shipName != null && !shipName.trim().isEmpty()) {
+                // Get ship details from the game
+                String shipDetails = gp.getShipDetails(shipName.trim());
+
+                // Display the ship details
+                if (shipDetails != null && !shipDetails.isEmpty()) {
+                    JOptionPane.showMessageDialog(myFrame, shipDetails, "Ship Details", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(myFrame, "Ship not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(myFrame, "Invalid ship name!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+    
+    
     private class ClearButtonHandler implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
