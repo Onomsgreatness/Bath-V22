@@ -572,24 +572,37 @@ public class SeaBattles implements BATHS
     /** Writes whole game to the specified file
      * @param fname name of file storing requests
      */
-    public void saveGame(String fname)
-    {   // uses object serialisation 
-           
+public void saveGame(String fname) throws IOException {
+    // Verify we can write to the file first
+    File file = new File(fname);
+    if (file.exists() && !file.canWrite()) {
+        throw new IOException("Cannot write to file: " + fname);
     }
+
+    try (ObjectOutputStream oos = new ObjectOutputStream(
+            new FileOutputStream(file))) {
+        oos.writeObject(this);
+    }
+}
+
     
     /** reads all information about the game from the specified file 
      * and returns 
      * @param fname name of file storing the game
      * @return the game (as an SeaBattles object)
      */
-    public SeaBattles loadGame(String fname)
-    {   // uses object serialisation 
-       
-        return null;
-    } 
+    // In SeaBattles.java:
+    public SeaBattles loadGame(String fname) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream ois = new ObjectInputStream(
+                new FileInputStream(fname))) {
+            return (SeaBattles) ois.readObject();
+        }
+    }
     
- 
-}
+}   
+
+
+
 
 
 

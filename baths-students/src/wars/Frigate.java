@@ -3,12 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package wars;
-import java.io.*;
+import java.io.Serializable;
 /**
  *
  * @author Pasha
  */
-public class Frigate extends Ship{
+
+public class Frigate extends Ship implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     private boolean pinnanceOrDoctor;
     private int cannons;

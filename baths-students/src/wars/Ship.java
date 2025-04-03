@@ -3,12 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package wars;
-import java.io.*;
+import java.io.Serializable;
 /**
  *
  * @author Pasha
  */
-public abstract class Ship {
+public abstract class Ship  implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String name;
     private String captainName;
     private int battleSkill;

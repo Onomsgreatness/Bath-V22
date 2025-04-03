@@ -3,12 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package wars;
-import java.io.*;
+import java.io.Serializable;
 /**
  *
  * @author Pasha
  */
-public class Encounter {
+public class Encounter implements Serializable {
+    private static final long serialVersionUID = 1L;
     
     private int encounterNumber;
     private EncounterType type;

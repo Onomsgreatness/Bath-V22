@@ -13,7 +13,7 @@ public class GameUI
     private BATHS myBattles ;
     private Scanner myIn = new Scanner(System.in);
 
-    public void doMain()
+    public void doMain() throws IOException, ClassNotFoundException
     {
         int choice;
         System.out.println("Enter admiral's name");
@@ -121,7 +121,7 @@ public class GameUI
         return choice;        
     } 
     
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException, ClassNotFoundException
     {
         GameUI xxx = new GameUI();
         xxx.doMain();
