@@ -241,6 +241,11 @@ public class SeaBattles implements BATHS
      **/        
     public String commissionShip(String nme)
     {
+        
+    if(squadron.containsKey(nme) && !reserveFleet.containsKey(nme)){
+        return "Not available";
+        }
+  
      // 1. Check if ship exists in reserve
     if (!reserveFleet.containsKey(nme)) {
         return "Not found";
@@ -253,9 +258,6 @@ public class SeaBattles implements BATHS
             return "Not enough money";
         }
     
-    if (ship.isInReserve()) {
-            return "Not available";
-        }
 
         warChest -= ship.getCommissionFee();
         ship.setState(ShipState.ACTIVE);
@@ -263,8 +265,9 @@ public class SeaBattles implements BATHS
         squadron.put(nme, ship);
 
         return "Ship commissioned";
-    }
         
+    }
+
     /** Returns true if the ship with the name is in the admiral's squadron, false otherwise.
      * @param nme is the name of the ship
      * @return returns true if the ship with the name is in the admiral's squadron, false otherwise.

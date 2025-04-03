@@ -1,0 +1,245 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 65011712 bytes. Error detail: G1 virtual space
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   This process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3616), pid=18040, tid=15940
+#
+# JRE version:  (21.0.5+11) (build )
+# Java VM: OpenJDK 64-Bit Server VM (21.0.5+11-LTS, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -ea org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner warTesting.T4ShipCommissionedTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\ASUS\AppData\Local\Temp\TEST-warTesting.T4ShipCommissionedTest.xml crashfile=C:\Users\ASUS\AppData\Local\NetBeans\Cache\21\executor-snippets\junitvmwatcher15562054907713853810.properties propsfile=C:\Users\ASUS\AppData\Local\NetBeans\Cache\21\executor-snippets\junit18287324649641560454.properties
+
+Host: Intel(R) Core(TM) i3-10110U CPU @ 2.10GHz, 4 cores, 3G,  Windows 11 , 64 bit Build 26100 (10.0.26100.3323)
+Time: Thu Apr  3 21:03:38 2025 GMT Daylight Time elapsed time: 0.120595 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000202687f1430):  JavaThread "Unknown thread" [_thread_in_vm, id=15940, stack(0x0000002965500000,0x0000002965600000) (1024K)]
+
+Stack: [0x0000002965500000,0x0000002965600000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6d4b19]
+V  [jvm.dll+0x8b0481]
+V  [jvm.dll+0x8b27ee]
+V  [jvm.dll+0x8b2ed3]
+V  [jvm.dll+0x283f36]
+V  [jvm.dll+0x6d11b5]
+V  [jvm.dll+0x6c5ada]
+V  [jvm.dll+0x35b9fa]
+V  [jvm.dll+0x3635f6]
+V  [jvm.dll+0x3b511e]
+V  [jvm.dll+0x3b53c8]
+V  [jvm.dll+0x32f33c]
+V  [jvm.dll+0x32fecb]
+V  [jvm.dll+0x8789b9]
+V  [jvm.dll+0x3c2271]
+V  [jvm.dll+0x861b53]
+V  [jvm.dll+0x4567ae]
+V  [jvm.dll+0x458431]
+C  [jli.dll+0x52a3]
+C  [ucrtbase.dll+0x37b0]
+C  [KERNEL32.DLL+0x2e8d7]
+C  [ntdll.dll+0xbbf6c]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ffa2a733bd0, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+Total: 0
+
+Other Threads:
+  0x000002026aab3dd0 WorkerThread "GC Thread#0"                     [id=1056, stack(0x0000002965600000,0x0000002965700000) (1024K)]
+  0x000002026aabc7c0 ConcurrentGCThread "G1 Main Marker"            [id=24596, stack(0x0000002965700000,0x0000002965800000) (1024K)]
+  0x000002026aabe050 WorkerThread "G1 Conc#0"                       [id=13156, stack(0x0000002965800000,0x0000002965900000) (1024K)]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffa29e223e7]
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007ffa2a7a9520] Heap_lock - owner thread: 0x00000202687f1430
+
+Heap address: 0x00000000c2800000, size: 984 MB, Compressed Oops mode: 32-bit
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 5 size 8 Array Of Cards #cards 12 size 40 Howl #buckets 4 coarsen threshold 1843 Howl Bitmap #cards 512 size 80 coarsen threshold 460 Card regions per heap region 1 cards per card region 2048
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x00000000c2800000, 0x0000000100000000)
+  region size 1024K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffa2a20e469]
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.027 Loaded shared library C:\Program Files\BellSoft\LibericaJDK-21\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Memory protections (0 events):
+No events
+
+Nmethod flushes (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff6900f0000 - 0x00007ff6900fe000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\java.exe
+0x00007ffaba7a0000 - 0x00007ffabaa03000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffab9530000 - 0x00007ffab95f7000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffab7d50000 - 0x00007ffab8119000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffab8290000 - 0x00007ffab83dc000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffaa0e90000 - 0x00007ffaa0eab000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\VCRUNTIME140.dll
+0x00007ffa7d5b0000 - 0x00007ffa7d5c8000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\jli.dll
+0x00007ffaba340000 - 0x00007ffaba50a000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffa9c850000 - 0x00007ffa9cae0000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.3323_none_3e088096e3344490\COMCTL32.dll
+0x00007ffab81b0000 - 0x00007ffab81d7000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffaba2f0000 - 0x00007ffaba31a000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffaba6b0000 - 0x00007ffaba759000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffab83e0000 - 0x00007ffab8511000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffab81e0000 - 0x00007ffab8283000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffab8f50000 - 0x00007ffab8f7f000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffab0250000 - 0x00007ffab025c000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\vcruntime140_1.dll
+0x00007ffa5a580000 - 0x00007ffa5a60e000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\msvcp140.dll
+0x00007ffa29ae0000 - 0x00007ffa2a88b000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\server\jvm.dll
+0x00007ffab8e10000 - 0x00007ffab8ec2000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffab8f90000 - 0x00007ffab9036000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffab96e0000 - 0x00007ffab97f6000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffab8ed0000 - 0x00007ffab8f44000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffab7830000 - 0x00007ffab787e000 	C:\WINDOWS\SYSTEM32\POWRPROF.dll
+0x00007ffa9de70000 - 0x00007ffa9dea6000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffab1180000 - 0x00007ffab118b000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffab7810000 - 0x00007ffab7824000 	C:\WINDOWS\SYSTEM32\UMPDC.dll
+0x00007ffab6790000 - 0x00007ffab67aa000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffaaa250000 - 0x00007ffaaa25a000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\jimage.dll
+0x00007ffaa5bf0000 - 0x00007ffaa5e31000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffab8a70000 - 0x00007ffab8df2000 	C:\WINDOWS\System32\combase.dll
+0x00007ffab8990000 - 0x00007ffab8a66000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ffa92900000 - 0x00007ffa92939000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffab8520000 - 0x00007ffab85b9000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffaa0130000 - 0x00007ffaa014f000 	C:\Program Files\BellSoft\LibericaJDK-21\bin\java.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\BellSoft\LibericaJDK-21\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.3323_none_3e088096e3344490;C:\Program Files\BellSoft\LibericaJDK-21\bin\server
+
+VM Arguments:
+jvm_args: -ea 
+java_command: org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner warTesting.T4ShipCommissionedTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\ASUS\AppData\Local\Temp\TEST-warTesting.T4ShipCommissionedTest.xml crashfile=C:\Users\ASUS\AppData\Local\NetBeans\Cache\21\executor-snippets\junitvmwatcher15562054907713853810.properties propsfile=C:\Users\ASUS\AppData\Local\NetBeans\Cache\21\executor-snippets\junit18287324649641560454.properties
+java_class_path (initial): C:\Users\ASUS\Desktop\Bath-V22\baths-students\build\classes;C:\Program Files\NetBeans-21\netbeans\platform\modules\ext\hamcrest-core-1.3.jar;C:\Program Files\NetBeans-21\netbeans\platform\modules\ext\junit-4.13.2.jar;C:\Users\ASUS\Desktop\Bath-V22\baths-students\build\test\classes;C:\Program Files\NetBeans-21\netbeans\extide\ant\lib\ant-launcher.jar;C:\Program Files\NetBeans-21\netbeans\extide\ant\lib\ant.jar;C:\Program Files\NetBeans-21\netbeans\extide\ant\lib\ant-junit.jar;C:\Program Files\NetBeans-21\netbeans\extide\ant\lib\ant-junit4.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 3                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 1                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 4                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 65011712                                  {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 1031798784                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5832780                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122912730                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122912730                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 1031798784                             {manageable} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\BellSoft\LibericaJDK-21\
+PATH=C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\BellSoft\LibericaJDK-21\bin\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X64\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X86\;C:\Program Files (x86)\Common Files\Pulse Secure\TNC Client Plugin\;C:\Program Files\BellSoft\LibericaJDK-21\\bin;C:\Users\ASUS\AppData\Local\Programs\Python\Launcher\;C:\Users\ASUS\AppData\Local\Microsoft\WindowsApps;C:\Users\ASUS\AppData\Local\GitHubDesktop\bin;C:\Users\ASUS\AppData\Local\Programs\Microsoft VS Code\bin;
+USERNAME=ASUS
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 142 Stepping 12, GenuineIntel
+TMP=C:\Users\ASUS\AppData\Local\Temp
+TEMP=C:\Users\ASUS\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 26100 (10.0.26100.3323)
+OS uptime: 4 days 4:26 hours
+Hyper-V role detected
+
+CPU: total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 142 stepping 12 microcode 0xde, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, fma, vzeroupper, clflush, clflushopt, hv, rdtscp, f16c
+Processor Information for processor 0
+  Max Mhz: 2501, Current Mhz: 1500, Mhz Limit: 2501
+Processor Information for processor 1
+  Max Mhz: 2501, Current Mhz: 2501, Mhz Limit: 2501
+Processor Information for processor 2
+  Max Mhz: 2501, Current Mhz: 2501, Mhz Limit: 2501
+Processor Information for processor 3
+  Max Mhz: 2501, Current Mhz: 1500, Mhz Limit: 2501
+
+Memory: 4k page, system-wide physical 3933M (340M free)
+TotalPageFile size 16221M (AvailPageFile size 7M)
+current process WorkingSet (physical memory assigned to process): 11M, peak: 11M
+current process commit charge ("private bytes"): 52M, peak: 113M
+
+vm_info: OpenJDK 64-Bit Server VM (21.0.5+11-LTS) for windows-amd64 JRE (21.0.5+11-LTS), built on 2024-10-13T20:05:58Z by "hudson" with MS VC++ 17.1 (VS2022)
+
+END.
