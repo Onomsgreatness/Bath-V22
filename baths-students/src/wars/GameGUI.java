@@ -46,10 +46,17 @@ public class GameGUI
 
         eastPanel.add(clearBtn);
         clearBtn.addActionListener(new ClearHandler());
+        
+        
         eastPanel.add(quitBtn);
 
+        eastPanel.add(viewBtn);
+        viewBtn.addActionListener(new ViewStateHandler());
+      
+        
         clearBtn.setVisible(true);
         quitBtn.setVisible(true);
+        viewBtn.setVisible(true);
         // building is done - arrange the components and show        
         myFrame.pack();
         myFrame.setVisible(true);
@@ -68,13 +75,12 @@ public class GameGUI
         menubar.add(fileMenu);
         
         
-        
         JMenuItem listShipItem = new JMenuItem("List reserve Ships");
         listShipItem.addActionListener(new ListFleetHandler());
         fileMenu.add(listShipItem);
         
         JMenuItem listSquadron = new JMenuItem("List Squadron Ships");
-        listShipItem.addActionListener(new ListSquadronHandler());
+        listSquadron.addActionListener(new ListSquadronHandler());
         fileMenu.add(listSquadron);
         
         JMenuItem decommission = new JMenuItem("De-ommission Ship");
@@ -85,6 +91,9 @@ public class GameGUI
         viewShipItem.addActionListener(new ViewShipHandler());
         fileMenu.add(viewShipItem);
         
+        JMenuItem commission = new JMenuItem("Commission Ship");
+        commission.addActionListener(new CommissionHandler());
+        fileMenu.add(commission);
     }
 
 
@@ -145,6 +154,26 @@ public class GameGUI
     }
     
    
+    
+    private class CommissionHandler implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            String result = "";
+            String inputValue = JOptionPane.showInputDialog("Ship code ?: ");
+            
+            if(gp.isInSquadron(inputValue)) 
+            {
+                gp.commissionShip(inputValue);
+                result = inputValue + " is commissioned";
+            }
+            else
+            {
+                result = inputValue + " not in fleet";
+            }
+            JOptionPane.showMessageDialog(myFrame,result);    
+        }
+    }
     /**
      * Handles viewing a ship's details.
      */
@@ -170,6 +199,16 @@ public class GameGUI
     }
     
     
+    private class ViewStateHandler implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            listing.setVisible(true);
+            String state = gp.toString();
+            listing.setText(state);
+        }
+    }
+    
     private class ClearButtonHandler implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
@@ -178,6 +217,8 @@ public class GameGUI
             clearBtn.setVisible(false);
         }
     }
+    
+    
     
 }
    

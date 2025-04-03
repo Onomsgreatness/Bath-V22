@@ -81,18 +81,18 @@ public class GameUI
             System.out.println(success);
             }
             
-//            else if (choice == 9) // Task 7 only
-//            {
-//                System.out.println("Write to file");
-//                myBattles.saveGame("olenka.dat");
-//            }
-//            else if (choice == 10) // Task 7 only
-//            {
-//                System.out.println("Recommission from file");
-//                SeaBattles myBattles2=null;
-//                myBattles2.loadGame("olenka.dat");
-//                System.out.println(myBattles2.toString());               
-//            }  
+            else if (choice == 9) // Task 7 only
+            {
+                System.out.println("Write to file");
+                myBattles.saveGame("olenka.dat");
+            }
+            else if (choice == 10) // Task 7 only
+            {
+                System.out.println("Recommission from file");
+                SeaBattles myBattles2=null;
+                myBattles2 = myBattles.loadGame("olenka.dat");
+                System.out.println(myBattles2.toString());               
+            }  
         }
         System.out.println("Thank-you");
     }
