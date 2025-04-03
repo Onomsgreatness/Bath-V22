@@ -315,9 +315,12 @@ public class SeaBattles implements BATHS
      */
     public void restoreShip(String ref)
     {
-        Ship ship = squadron.get(ref);
+    Ship ship = reserveFleet.get(ref);  // Only check reserve fleet
+    if (ship != null && (ship.isResting() || ship.isInReserve())) {
         ship.setState(ShipState.ACTIVE);
-  
+        reserveFleet.remove(ref);
+        squadron.put(ref, ship);
+    }
     }
     
 //**********************Encounters************************* 
@@ -375,13 +378,16 @@ public class SeaBattles implements BATHS
          if (shipIsStronger(chosenShipName, encNo)){
              warChest = warChest + encounter.getPrizeMoney();
              chosenShip.setState(ShipState.RESTING);
+             squadron.remove(chosenShipName); 
+             reserveFleet.put(chosenShipName, chosenShip); 
              return "0 - Encounter won by " + chosenShipName + ". \nWar Chest: " + warChest;
          }
          
          else {
-             warChest = warChest - encounter.getPrizeMoney();
-             chosenShip.setState(ShipState.SUNK);
-             squadron.remove(chosenShipName);
+                 warChest -= encounter.getPrizeMoney();
+                 chosenShip.setState(ShipState.SUNK);
+                 reserveFleet.put(chosenShipName, chosenShip);  // Move to reserve
+                 squadron.remove(chosenShipName);
              
              if (squadron.isEmpty()){
                  return "2 - Encounter lost on battle skill and " + chosenShipName +
