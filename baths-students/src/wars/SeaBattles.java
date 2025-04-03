@@ -409,7 +409,7 @@ public class SeaBattles implements BATHS
             return ship instanceof ManOWar || (ship instanceof Frigate && ((Frigate) ship).getPinnanceOrDoctor());
         }
         if(encounterType == EncounterType.BATTLE){
-            return (ship instanceof ManOWar || ship instanceof Frigate) && !(ship instanceof Sloop);
+            return (ship instanceof ManOWar || ship instanceof Frigate ||ship instanceof Sloop);
         }
         if(encounterType == EncounterType.SKIRMISH){
             return ship instanceof Frigate || ship instanceof Sloop;
