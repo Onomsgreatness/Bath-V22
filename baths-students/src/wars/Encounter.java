@@ -47,7 +47,7 @@ public class Encounter {
     public String toString(){
         return
             "Encounter Number = " + encounterNumber +
-            "Encounter Type = " + type +
+            " |Encounter Type = " + type +
             " | Location = " + location +
             " | SKill Required = " + skillRequired +
             " | Prize Money = " + prizeMoney;

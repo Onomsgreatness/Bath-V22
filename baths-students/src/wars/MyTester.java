@@ -14,8 +14,8 @@ public static void main(String[] args) {
     
     SeaBattles myBattles = new SeaBattles("My Battles");
     //System.out.println(myBattles.getAllEncounters());
+    System.out.println(myBattles.getReserveFleet());
     
-    System.out.println(myBattles.toString());
     
     
     

@@ -66,7 +66,8 @@ public abstract class Ship {
             "Ship Name = " + name +
             " | Captain Name = " + captainName +
             " | Battle Skill = " + battleSkill +
-            " | Commission Fee = " + commissionFee;
+            " | Commission Fee = " + commissionFee +
+            " | Ship Type = " + state;
     }
     
     
