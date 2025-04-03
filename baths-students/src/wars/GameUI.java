@@ -56,7 +56,9 @@ public class GameUI
             else if (choice == 5)
             {
        	       //write your code here
-       
+                System.out.println("Enter encounter number you wish to fight");
+                int encounterNo = myIn.nextInt();
+                System.out.println(myBattles.fightEncounter(encounterNo));
                   
             }
             else if (choice ==6)
