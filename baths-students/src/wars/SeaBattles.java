@@ -450,12 +450,22 @@ public class SeaBattles implements BATHS
      **/
     public String getAllEncounters()
     {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\nEncounters: \n");
-        for (Map.Entry<Integer, Encounter> entry : encounters.entrySet()) {
-            sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-        }
+    if (encounters.isEmpty()) {
         return "No encounters";
+    }
+
+    StringBuilder sb = new StringBuilder();
+    for (Encounter e : encounters.values()) {
+        List<String> parts = List.of(
+            String.valueOf(e.getEncounterNumber()),
+            e.getEncounterType().toString(),
+            e.getLocation(),
+            String.valueOf(e.getSkillRequired()),
+            String.valueOf(e.getPrizeMoney())
+        );
+        sb.append(String.join(", ", parts)).append("\n");
+    }
+    return sb.toString().trim();
     }
     
 
