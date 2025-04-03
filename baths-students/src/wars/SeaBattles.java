@@ -490,16 +490,16 @@ public class SeaBattles implements BATHS
      
     private void setupEncounters()
     {
-        encounters.put(1, new Encounter(1, "Battle", "Trafalgar", 3, 300));
-        encounters.put(2, new Encounter(2, "Skirmish", "Belle Isle", 3, 120));
-        encounters.put(3, new Encounter(3, "Blockade", "Brest", 3, 150));
-        encounters.put(4, new Encounter(4, "Battle", "St Malo", 9, 200));
-        encounters.put(5, new Encounter(5, "Blockade", "Dieppe", 7, 90));
-        encounters.put(6, new Encounter(6, "Skirmish", "Jersey", 8, 45));
-        encounters.put(7, new Encounter(7, "BLockade", "Nantes", 6, 130));
-        encounters.put(8, new Encounter(8, "Battle", "Finisterre", 4, 100));
-        encounters.put(9, new Encounter(9, "Skirmish", "Biscay", 5, 200));
-        encounters.put(10, new Encounter(10, "Battle", "Cadiz", 1, 250));
+        encounters.put(1, new Encounter(1, EncounterType.BATTLE, "Trafalgar", 3, 300));
+        encounters.put(2, new Encounter(2, EncounterType.SKIRMISH, "Belle Isle", 3, 120));
+        encounters.put(3, new Encounter(3, EncounterType.BLOCKADE, "Brest", 3, 150));
+        encounters.put(4, new Encounter(4, EncounterType.BATTLE, "St Malo", 9, 200));
+        encounters.put(5, new Encounter(5, EncounterType.BLOCKADE, "Dieppe", 7, 90));
+        encounters.put(6, new Encounter(6, EncounterType.SKIRMISH, "Jersey", 8, 45));
+        encounters.put(7, new Encounter(7, EncounterType.BLOCKADE, "Nantes", 6, 130));
+        encounters.put(8, new Encounter(8, EncounterType.BATTLE, "Finisterre", 4, 100));
+        encounters.put(9, new Encounter(9, EncounterType.SKIRMISH, "Biscay", 5, 200));
+        encounters.put(10, new Encounter(10, EncounterType.BATTLE, "Cadiz", 1, 250));
   
     }
         
