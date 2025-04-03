@@ -81,9 +81,9 @@ public class SeaBattles implements BATHS
         // Add ships in the reserve fleet
         String reserveFleetShips = getReserveFleet();
         if (reserveFleetShips.equals("No ships")) {
-            s += "No reserve fleet.\n";
+            s += "\nNo reserve fleet.\n";
         } else {
-            s += "Reserve Fleet:\n" + reserveFleetShips;
+            s += "\nReserve Fleet:\n" + reserveFleetShips;
         }
 
         return s;  

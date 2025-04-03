@@ -81,6 +81,11 @@ public class GameUI
             System.out.println(success);
             }
             
+            else if (choice == 8)
+            {
+                System.out.println(myBattles);
+            }
+            
             else if (choice == 9) // Task 7 only
             {
                 System.out.println("Write to file");
