@@ -31,7 +31,8 @@ public class Frigate extends Ship{
     public String toString(){
         return super.toString() +
             " | Cannons = " + cannons +
-            " | Has Pinnance or Doctor = " + pinnanceOrDoctor;
+            " | Has Pinnance or Doctor = " + pinnanceOrDoctor +
+            " | Frigate";
     }
     
     

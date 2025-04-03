@@ -24,7 +24,8 @@ public class Sloop extends Ship{
     @Override
     public String toString(){
         return super.toString() +
-            " | Has Pinnance or Doctor = " + pinnanceOrDoctor;
+            " | Has Pinnance or Doctor = " + pinnanceOrDoctor +
+            " | Sloop";
     } 
     
     

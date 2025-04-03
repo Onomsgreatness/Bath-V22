@@ -31,7 +31,8 @@ public class ManOWar extends Ship {
     public String toString(){
         return super.toString() +
             " | Decks = " + decks +
-            " | Marines = " + marines;
+            " | Marines = " + marines +
+            " | ManOWar";
     }
     
     
