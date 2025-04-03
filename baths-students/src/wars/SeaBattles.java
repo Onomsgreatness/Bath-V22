@@ -96,20 +96,8 @@ public class SeaBattles implements BATHS
      */
     public boolean isDefeated()
     {
-    // Check if war chest is empty
-    if (warChest < 0) {
-        return false;
-    }
-    
-    // Check if any ships can be retired
-    for (Ship ship : squadron.values()) {
-        if (!ship.isSunk()) {
-            return false;
-        }
-    }
-    
-    // If we get here, war chest is <= 0 and no retirable ships
-    return true;
+       return warChest <= 0 && 
+           squadron.values().stream().allMatch(Ship::isSunk);
 }
     
     /** returns the amount of money in the War Chest
@@ -510,14 +498,41 @@ public class SeaBattles implements BATHS
      * encounters.Data in the file is editable
      * @param filename name of the file to be read
      */
-    public void readEncounters(String filename)
-    { 
-      
-        
-        
-    }   
+    public void readEncounters(String filename) {
+    BufferedReader reader = null;
+    try {
+        reader = new BufferedReader(new FileReader(filename));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty() || line.startsWith("#")) {
+                continue;
+            }
+
+            String[] parts = line.split("\\|");
+            if (parts.length == 5) {
+                int id = Integer.parseInt(parts[0].trim());
+                EncounterType type = EncounterType.valueOf(parts[1].trim().toUpperCase());
+                String name = parts[2].trim();
+                int skill = Integer.parseInt(parts[3].trim());
+                int prize = Integer.parseInt(parts[4].trim());
+
+                encounters.put(id, new Encounter(id, type, name, skill, prize));
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    } finally {
+        if (reader != null) {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
  
-    
     // ***************   file write/read  *********************
     /** Writes whole game to the specified file
      * @param fname name of file storing requests
