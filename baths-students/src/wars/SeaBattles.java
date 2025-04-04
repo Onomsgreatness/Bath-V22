@@ -68,7 +68,7 @@ public class SeaBattles implements BATHS
         // Add admiral and war chest info
         s += "Admiral: "+ admiral + "\n";  // Name of the admiral
         s += "War Chest: " + warChest + "\n";  // State of the war chest
-        s += "Ship State: " + isStringDefeated()  + "\n";  // Whether defeated or not
+        s += "Admiral State: " + isStringDefeated()  + "\n";  // Whether defeated or not
 
         // Add ships currently in the squadron
         String squadronShips = getSquadron();
@@ -101,7 +101,7 @@ public class SeaBattles implements BATHS
            squadron.values().stream().allMatch(Ship::isSunk);
     }
     
-    public String isStringDefeated()
+    private String isStringDefeated()
     {
        if (isDefeated())
        {
@@ -134,17 +134,15 @@ public class SeaBattles implements BATHS
      **/
     public String getReserveFleet()
     {   //assumes reserves is a Hashmap
-       
-        if (reserveFleet.entrySet() != null) {  
-            StringBuilder sb = new StringBuilder();
-            for (Map.Entry<String, Ship> entry : reserveFleet.entrySet()) {
-                sb.append(entry.getKey()).append(": ").append(entry.getValue().toString()).append("\n");
-            }
-            return sb.toString();
-        }
-        else {
-            return "Ship not found";
-        }
+    if (reserveFleet.isEmpty()) {
+        return "No ships";
+    }
+    
+    StringBuilder sb = new StringBuilder();
+    for (Ship ship : reserveFleet.values()) {
+        sb.append(ship.toString()).append("\n");
+    }
+    return sb.toString();
     }
     
     /**Returns a String representation of the ships in the admiral's squadron

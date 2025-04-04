@@ -15,6 +15,7 @@ public class Sloop extends Ship{
     public Sloop (String name, String captain, int battleSkill, int commissionFee, boolean pinnanceOrDoctor){
         super(name, captain, battleSkill, commissionFee);
         this.pinnanceOrDoctor = pinnanceOrDoctor;
+        
 }
     
     public boolean getPinnanceOrDoctor(){
@@ -24,8 +25,8 @@ public class Sloop extends Ship{
     @Override
     public String toString(){
         return super.toString() +
-            " | Has Pinnance or Doctor = " + pinnanceOrDoctor +
-            " | Sloop";
+            " | Pinnance/Doctor = " + pinnanceOrDoctor +
+            " | Type = Sloop";
     } 
     
     

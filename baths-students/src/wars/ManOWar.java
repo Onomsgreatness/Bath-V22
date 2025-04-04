@@ -34,7 +34,7 @@ public class ManOWar extends Ship implements Serializable {
         return super.toString() +
             " | Decks = " + decks +
             " | Marines = " + marines +
-            " | ManOWar";
+            " | Type = ManOWar";
     }
     
     

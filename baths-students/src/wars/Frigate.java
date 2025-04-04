@@ -33,8 +33,8 @@ public class Frigate extends Ship implements Serializable {
     public String toString(){
         return super.toString() +
             " | Cannons = " + cannons +
-            " | Has Pinnance or Doctor = " + pinnanceOrDoctor +
-            " | Frigate";
+            " | Pinnance/Doctor = " + pinnanceOrDoctor +
+            " | Type = Frigate";
     }
     
     

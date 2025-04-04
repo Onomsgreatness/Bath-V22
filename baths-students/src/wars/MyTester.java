@@ -9,14 +9,17 @@ package wars;
  * @author Pasha
  */
 public class MyTester {
-
-public static void main(String[] args) {
+    private BATHS Admiral = new SeaBattles("Frank");
+    
+    private void doTest1(){
+        
+        System.out.println(Admiral.toString());
+    }
     
     
-    System.out.println("test");
     
-    
-    
-    
+    public static void main(String[] args) {
+        MyTester xx = new MyTester();
+        xx.doTest1();
     }
 }
