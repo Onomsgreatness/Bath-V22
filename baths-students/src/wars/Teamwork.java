@@ -17,7 +17,7 @@ public class Teamwork
         // Please list the member details alphabetically by surname 
         // i.e. the surname of member1 should come alphabetically 
         // before the surname of member 2...etc
-        details[0] = "team number";
+        details[0] = "CS01";
         
         details[1] = "Abuku";
         details[2] = "Onome";
